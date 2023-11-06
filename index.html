@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maxtrix Solver</title>
+	<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+	
+	<style>
+		* { font-family: helvetica; }
+		body { margin: 25px; }
+		p { display: inline; }
+		input {
+			margin: 2px;
+			width: 20px;
+		}
+		.toggle {
+			display:none;	
+		}
+	</style>
+</head>
+<body>
+	<h1>Solving a system of planes using a matrix</h1>
+	<h3>A simple tool to find the intersection of three planes.</h3>
+	<p>Welcome to Matrix Solver! This tool calculates the intersection point of three planes using a matrix while guiding the user through the step-by-step process.</p><br><br>
+	<p>Line 1: <p><input type="text" id="i0"><p>x + </p><input type="text" id="i1"><p>y + </p><input type="text" id="i2"><p>z + </p><input type="text" id="i3"><p> = 0 </p><br><br>
+	<p>Line 2: <p><input type="text" id="i4"><p>x + </p><input type="text" id="i5"><p>y + </p><input type="text" id="i6"><p>z + </p><input type="text" id="i7"><p> = 0 </p><br><br>
+	<p>Line 3: <p><input type="text" id="i8"><p>x + </p><input type="text" id="i9"><p>y + </p><input type="text" id="i10"><p>z + </p><input type="text" id="i11"><p> = 0 </p><br><br>
+	<button onclick="checkIntersection()">Submit</button><br><br>
+	<div id="matrixDisplay">
+	</div>
+	<span id="existence"></span><br><br>
+	<p class="toggle">We first create our matrix:</p><br><br>
+	<span id="matrixDisplay1"></span><br><br>
+	<p class="toggle">Next, we multiply the first two rows by some values to make the first element in each row equal. This is done by taking the least common multiple of said elements and then multiplying each element by the least common multiple divided by itself.</p><br><br>
+	<span id="matrixDisplay2"></span><br><br>
+	<p class="toggle">We can now subtract the first row from the second to eliminate x in the second row.</p><br><br>
+	<span id="matrixDisplay3"></span><br><br>
+	<p class="toggle">We go through the same process as the first two rows to set the first element in rows 1 and 3 equal to each other.</p><br><br>
+	<span id="matrixDisplay4"></span><br><br>
+	<p class="toggle">We can now subtract the first row from the third to eliminate x in the third row.</p><br><br>
+	<span id="matrixDisplay5"></span><br><br>
+	<p class="toggle">We go through the same process as before for the first two rows again, this time setting the second number (y coefficient) of the second and third rows equal to each other, preparing another elimination.</p><br><br>
+	<span id="matrixDisplay6"></span><br><br>
+	<p class="toggle">We can now subtract the second row from the third to eliminate y in the third row.</p><br><br>
+	<span id="matrixDisplay7"></span><br><br>
+	<p class="toggle">We go through the same process as before for the first two rows again. This time, we want to eliminate z from the second row so we set the z coefficients in the last two rows equal to each other.</p><br><br>
+	<span id="matrixDisplay8"></span><br><br>
+	<p class="toggle">We can now subtract the third row from the second to eliminate z in the second row. Note that this does not affect x and y since those coefficients are zero in the third row.</p><br><br>
+	<span id="matrixDisplay9"></span><br><br>
+	<p class="toggle">We go through the same process as before for the first two rows for the final time, setting the y coefficients in the first and second row equal to each other.</p><br><br>
+	<span id="matrixDisplay10"></span><br><br>
+	<p class="toggle">We can now subtract the second row from the first to eliminate y in the first row.</p><br><br>
+	<span id="matrixDisplay11"></span><br><br>
+	<p class="toggle">We go through the same process as before for the first two rows again. This time, we want to eliminate z from the first row so we set the third element of the first and third rows equal to each other.</p><br><br>
+	<span id="matrixDisplay12"></span><br><br>
+	<p class="toggle">We can now subtract the third row from the first to eliminate z in the first row.</p><br><br>
+	<span id="matrixDisplay13"></span><br><br>
+	<p class="toggle">To clean things up, we'll divide each row by the greatest common divisor of their two remaining nonzero terms while also making the nonconstant term positive.</p><br><br>
+	<span id="matrixDisplay14"></span><br><br>
+	<p class="toggle">Thus, we obtain</p><br><br>
+	<span id="line1"></span><br><br>
+	<span id="line2"></span><br><br>
+	<span id="line3"></span><br><br>
+	<p class="toggle">And the intersection point would be</p><br><br>
+	<span id="line4"></span><br><br>
+	
+	
+    <script src="./main.js"></script>
+</body>
+</html>
